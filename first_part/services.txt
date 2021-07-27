@@ -1,0 +1,65 @@
+Covered
+======================================
+EC2
+SNS
+EFS
+ELB
+ASG
+VPC
+IAM	 
+ECR	
+SQS			
+KMS
+CloudFormation	
+Secret Manager
+Code Commit
+Code Build
+ResourceGroups 
+Cognito (User Pool)
+DMS			- To perform this....we need to remove "IAM:CreateRole" (Error: User: arn:aws:iam::602989525015:user/enforce-tag-user is not authorized to perform: iam:CreateRole on resource: arn:aws:iam::602989525015:role/dms-vpc-role with an explicit deny)			
+ElasticBeanstalk	- Working....with some issues (Maybe "IAM: CreateRole" action is a problem)
+
+
+
+WIP
+=======================================
+EKS		- paid		
+Kinesis 	- Paid.......Please note that Amazon Kinesis Data Streams is NOT currently available in AWS Free Tier.	
+Athena	 	- paid
+EMR 		- Paid 
+XRay 		- paid
+Redshift	- you’re eligible for a free limited time trial of our dc2.Large node
+EC2-ImageBuilder
+
+
+Not feasible as per current observation
+======================================================================
+S3 		- Tag Available (S3:CreateBucket........Access Denied)	
+		  using Terraform: Error: error updating S3 Bucket (poctag) tags: error setting resource tags (poctag): AccessDenied: Access Denied 
+        	  status code: 403, request id: P6AHMSZ3TB4RQ38H, host id: kaCAfQNqtVARZFR94TtRhvogcGtrVRmjxUd0C5HEoUIXuNo41J+mC0JDN124bx1WgohYC6gGeJY=)
+CloudTrail 	- Tags Available
+ECS		- Tags Available
+DynamoDB 	- Tags Available (Error: "Not Authorized: User: arn:aws:iam::602989525015:user/enforce-tag-user is not authorized to perform: dynamodb:CreateTable on resource: arn:aws:dynamodb:us-east-1:602989525015:table/test with an explicit deny (Service: AmazonDynamoDBv2; Status Code: 400; Error Code: AccessDeniedException; Request ID: FSA3JEHT0N2CHV7OGH0BO65MNJVV4KQNSO5AEMVJF66Q9ASUAAJG; Proxy: null)
+				 (Using Terraform: Error: error creating DynamoDB Table: AccessDeniedException: User: arn:aws:iam::602989525015:user/enforce-tag-user is not authorized to perform: dynamodb:CreateTable on resource: arn:aws:dynamodb:us-east-1:602989525015:table/var.table_name with an explicit deny status code: 400, request id: J40NV6BUMJPT6FS27UKL4OTT5FVV4KQNSO5AEMVJF66Q9ASUAAJG")
+Elastic Cache	- Tags Available (Error: "User: arn:aws:iam::602989525015:user/enforce-tag-user is not authorized to perform: elasticache:CreateCacheCluster on resource: arn:aws:elasticache:us-west-1:602989525015:parametergroup:default.memcached1.6 with an explicit deny (Service: AmazonElastiCache; Status Code: 403; Error Code: AccessDenied; Request ID: 5ca63b35-df65-4bbc-8718-8538f9b18417; Proxy: null)"			
+Route53		- Tags available (CreateHostedZone: Not Working)
+SQS		- Tags Available ("CreateQueue = AccessDenied: Access to the resource https://sqs.us-west-1.amazonaws.com/ is denied.")
+Licence Manager	- Tags avialable (Error fetching License Configurations Service role not found. Consult setup procedures in License Manager User Guide and create the required role for the service.)
+
+
+================================
+ECR		- Tags not found (CreateRepository: No Tagging Option)
+RDS 		- Tags not found
+API Gateway	- Tags not found
+CloudWatch	- Tags not found
+LaunchConfig	- Tags not found
+Lambda 		- Tags not found
+CloudFront	- Tags not found
+CodePipeline	- Tags not found
+WAF(Web ACL) 	- Tags not found
+SSM 		- Tags not found
+ACM 		- Tags not found
+AWS SSO		- Tags not found
+Create Image	-
+Code Deploy	-
+AWS ORG		-
