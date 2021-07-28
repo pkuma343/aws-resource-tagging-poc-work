@@ -26,8 +26,7 @@ CloudFront					- Tags not found on console...using Terraform
 WAF(Web ACL) 				- Tags not found on console...using Terraform
 Code Deploy					- Tags not found on console...using Terraform (Application,DeploymentGroup)
 SSM 						- Tags not found on console...using Terraform
-
-ECS	(Service)				- Tags Available on console...using Terraform (Cluster and Task Definition Not Effected with tags or without tags)
+ECS	(Service)				- Tags Available on console...using Terraform (Cluster and Task Definition Not affected with tags or without tags)
 
 
 ======================================================================
@@ -47,6 +46,12 @@ DynamoDB 					- Tags Available (Error: "Not Authorized: User: arn:aws:iam::60298
 
 CloudWatch-log				- Tags Available
 								Using Terraform (CreateLogGroup......Error: Creating CloudWatch Log Group failed: AccessDeniedException: User: arn:aws:iam::602989525015:user/enforce-tag-user is not authorized to perform: logs:CreateLogGroup on resource: arn:aws:logs:us-east-1:602989525015:log-group:poc-logGroup:log-stream: with an explicit deny)
+
+SQS							- Tags Available ("CreateQueue = AccessDenied: Access to the resource https://sqs.us-west-1.amazonaws.com/ is denied.")
+								Using Terraform....Error: error creating SQS Queue (terraform-poc-queue): AccessDenied: Access to the resource https://sqs.us-east-1.amazonaws.com/ is denied.
+
+Route53						- Tags available... tested on Console as well as Terraform(Condition is not affected on Create Hosted Zone...tagged or untagged both are working)
+								on console..due to Action:ChangeTagsForResource..Error: test.test failed to add the tags.You can add the tags later when editing the hosted zone.
 ====
 Lambda 						- Tags not found on console...using Terraform
 								without tags.......Error: Error creating IAM Role lambda_poc_role: AccessDenied: User: arn:aws:iam::602989525015:user/enforce-tag-user is not authorized to perform: iam:CreateRole on resource: arn:aws:iam::602989525015:role/lambda_poc_role with an explicit deny
@@ -61,16 +66,11 @@ CodePipeline				- Tags not found on console....using Terraform
 
 CodeDeploy(deployment_config)- Tags not found on console....using Terraform....aws_codedeploy_deployment_config...Error: Unsupported argument....(An argument named "tags" is not expected here.)
 
-SQS							- Tags Available ("CreateQueue = AccessDenied: Access to the resource https://sqs.us-west-1.amazonaws.com/ is denied.")
-								Using Terraform....Error: error creating SQS Queue (terraform-poc-queue): AccessDenied: Access to the resource https://sqs.us-east-1.amazonaws.com/ is denied.
-
-
 
 ========================================
 				WIP
 ========================================
 CloudTrail 		- Tags Available
-Route53			- Tags available (CreateHostedZone: Not Working)
 Licence Manager	- Tags avialable (Error fetching License Configurations Service role not found. Consult setup procedures in License Manager User Guide and create the required role for the service.)
 API Gateway		- Tags not found
 AWS SSO			- Tags not found

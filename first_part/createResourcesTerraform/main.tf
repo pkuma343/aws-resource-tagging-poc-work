@@ -2,11 +2,13 @@ provider "aws" {
     region = "us-east-1" 
 }
 
-# Error: AccessDenied: Access to the resource https://sqs.us-east-1.amazonaws.com/ is denied
-module "sqs" {
-  source  = "./modules/sqs"
+# Working with tags or without tags
+module "route53" {
+  source  = "./modules/route53"
   tags = var.tags
 }
+
+
 
 #success
 // module "elasticache" {
@@ -111,3 +113,9 @@ module "sqs" {
 //  bucket_name = var.bucket_name
 // }
 
+
+# Error: AccessDenied: Access to the resource https://sqs.us-east-1.amazonaws.com/ is denied
+// module "sqs" {
+//   source  = "./modules/sqs"
+//   tags = var.tags
+// }
