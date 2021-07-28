@@ -2,10 +2,17 @@ provider "aws" {
     region = "us-east-1" 
 }
 
-module "elasticache" {
-  source  = "./modules/elasticache"
+# Error: AccessDenied: Access to the resource https://sqs.us-east-1.amazonaws.com/ is denied
+module "sqs" {
+  source  = "./modules/sqs"
   tags = var.tags
 }
+
+#success
+// module "elasticache" {
+//   source  = "./modules/elasticache"
+//   tags = var.tags
+// }
 
 #success ECS:CreateService 
 // module "ecs" {

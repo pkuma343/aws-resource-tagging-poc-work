@@ -15,6 +15,7 @@ Code Commit
 Code Build
 ResourceGroups 
 Cognito (User Pool)
+Elastic Cache				- (using Terraform as well as a console) Tagging on default resources(like parametergroup) is not supported. 
 DMS							- To perform this....we need to remove "IAM:CreateRole" (Error: User: arn:aws:iam::602989525015:user/enforce-tag-user is not authorized to perform: iam:CreateRole on resource: arn:aws:iam::602989525015:role/dms-vpc-role with an explicit deny)			
 ElasticBeanstalk			- Working....with some issues (Maybe "IAM: CreateRole" action is a problem)
 RDS 						- Tags not found on console...using Terraform
@@ -25,9 +26,8 @@ CloudFront					- Tags not found on console...using Terraform
 WAF(Web ACL) 				- Tags not found on console...using Terraform
 Code Deploy					- Tags not found on console...using Terraform (Application,DeploymentGroup)
 SSM 						- Tags not found on console...using Terraform
-ECS	(Service)				- Tags Available on console...using Terraform (Cluster and Task Definition Not Effected with tags or without tags)
-Elastic Cache				- Tags Available on console...using Terraform
 
+ECS	(Service)				- Tags Available on console...using Terraform (Cluster and Task Definition Not Effected with tags or without tags)
 
 
 ======================================================================
@@ -61,6 +61,9 @@ CodePipeline				- Tags not found on console....using Terraform
 
 CodeDeploy(deployment_config)- Tags not found on console....using Terraform....aws_codedeploy_deployment_config...Error: Unsupported argument....(An argument named "tags" is not expected here.)
 
+SQS							- Tags Available ("CreateQueue = AccessDenied: Access to the resource https://sqs.us-west-1.amazonaws.com/ is denied.")
+								Using Terraform....Error: error creating SQS Queue (terraform-poc-queue): AccessDenied: Access to the resource https://sqs.us-east-1.amazonaws.com/ is denied.
+
 
 
 ========================================
@@ -68,11 +71,11 @@ CodeDeploy(deployment_config)- Tags not found on console....using Terraform....a
 ========================================
 CloudTrail 		- Tags Available
 Route53			- Tags available (CreateHostedZone: Not Working)
-SQS				- Tags Available ("CreateQueue = AccessDenied: Access to the resource https://sqs.us-west-1.amazonaws.com/ is denied.")
 Licence Manager	- Tags avialable (Error fetching License Configurations Service role not found. Consult setup procedures in License Manager User Guide and create the required role for the service.)
 API Gateway		- Tags not found
 AWS SSO			- Tags not found
-AWS ORG			- 
+AWS ORG			-
+
 
 
 ================================================
