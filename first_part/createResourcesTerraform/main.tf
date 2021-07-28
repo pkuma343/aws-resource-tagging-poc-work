@@ -1,14 +1,18 @@
 provider "aws" {
     region = "us-east-1" 
-    // access_key="AKIAYYZHZ7ALQXAO2C44"
-    // secret_key="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" 
 }
 
 
-module "ssm" {
-  source  = "./modules/ssm"
+module "ecs" {
+  source  = "./modules/ecs"
   tags = var.tags
 }
+
+#success
+// module "ssm" {
+//   source  = "./modules/ssm"
+//   tags = var.tags
+// }
 
 
 #success
