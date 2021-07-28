@@ -2,7 +2,7 @@
 	"Version": "2012-10-17",
 	"Statement": [
 		{
-			"Sid": "DenyEFSAutoScalingELBwithoutTag",
+			"Sid": "DenyAllPossibleResourcesWithoutTag",
 			"Effect": "Deny",
 			"Action": [
 				"ec2:RunInstances",
@@ -74,7 +74,14 @@
 				"ssm:CreateActivation",
 				"ssm:CreateAssociation",
 				"ssm:CreateDocument",
-				"ssm:AddTagsToResource"
+				"ssm:AddTagsToResource",
+				"ecs:CreateCluster",
+				"ecs:CreateService",
+				"ecs:TagResource",
+				"ecs:CreateTaskSet",
+				"elasticache:AddTagsToResource",
+				"elasticache:CreateCacheCluster",
+				"route53:CreateHostedZone"
 			],
 			"Resource": [
 				"arn:aws:ec2:*:*:instance/*",
@@ -123,7 +130,14 @@
 				"arn:aws:cloudtrail:*:*:trail/*",
 				"arn:aws:ec2:*:*:instance/*",
 				"arn:aws:ssm:*:*:managed-instance/*",
-				"arn:aws:ssm:*:*:document/*"
+				"arn:aws:ssm:*:*:document/*",
+				"arn:aws:ecs:*:*:service/*",
+				"arn:aws:ecs:*:*:cluster/*",
+				"arn:aws:ecs:*:*:task/*",
+				"arn:aws:ecs:*:*:container-instance/*",
+				"arn:aws:ecs:*:*:task-definition/*:*",
+				"arn:aws:elasticache:*:*:cluster:*",
+				"arn:aws:route53:::hostedzone/*"
 			],
 			"Condition": {
 				"Null": {
