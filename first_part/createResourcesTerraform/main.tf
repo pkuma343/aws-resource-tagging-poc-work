@@ -2,11 +2,16 @@ provider "aws" {
     region = "us-east-1" 
 }
 
-
-module "ecs" {
-  source  = "./modules/ecs"
+module "elasticache" {
+  source  = "./modules/elasticache"
   tags = var.tags
 }
+
+#success ECS:CreateService 
+// module "ecs" {
+//   source  = "./modules/ecs"
+//   tags = var.tags
+// }
 
 #success
 // module "ssm" {
