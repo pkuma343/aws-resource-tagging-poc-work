@@ -2,11 +2,25 @@ provider "aws" {
     region = "us-east-1" 
 }
 
-# Working with tags or without tags
-module "route53" {
-  source  = "./modules/route53"
+
+
+resource "aws_licensemanager_license_configuration" "example" {
+  name                     = "Example"
+  description              = "Example"
+  // license_count            = 10
+  // license_count_hard_limit = true
+  license_counting_type    = "Socket"
+
+  // license_rules = [
+  //   "#minimumSockets=2",
+  // ]
+
   tags = var.tags
 }
+
+
+
+
 
 
 
@@ -118,4 +132,17 @@ module "route53" {
 // module "sqs" {
 //   source  = "./modules/sqs"
 //   tags = var.tags
+// }
+
+# Working with tags or without tags
+// module "route53" {
+//   source  = "./modules/route53"
+//   tags = var.tags
+// }
+
+## Error AccessDeniedException
+// module "cloudTrail" {
+//   source  = "./modules/cloudTrail"
+//   tags = var.tags
+//   bucket_name = var.bucket_name
 // }
