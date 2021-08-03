@@ -1,4 +1,5 @@
-***************************  Covered and Success  ************************
+===========================================================================
+***************************  Covered and Success  *************************
 ===========================================================================
 EC2
 SNS
@@ -68,14 +69,15 @@ Route53						- Tags available... tested on Console as well as Terraform(Conditio
 
 CloudTrail 					- Tags Available 
 								Using Terraform (Error: Error creating CloudTrail: AccessDeniedException: User: arn:aws:iam::602989525015:user/enforce-tag-user is not authorized to perform: cloudtrail:CreateTrail on resource: arn:aws:cloudtrail:us-east-1:602989525015:trail/mytagpoc with an explicit deny)
-
+								
 Licence Manager				- Tags avialable (SCP Not affected)  
 
+API Gateway					- Tags not found on console....using Terraform
+								Error: error creating API Gateway specification: AccessDeniedException: status code: 403, request id: 06ee6500-f18c-424b-be30-fe0199131d45
 
 ========================================
 				WIP
 ========================================
-API Gateway		- Tags not found
 AWS SSO			- Tags not found
 AWS ORG			-
 
