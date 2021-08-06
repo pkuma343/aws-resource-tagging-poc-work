@@ -2,7 +2,7 @@
 	"Version": "2012-10-17",
 	"Statement": [
 		{
-			"Sid": "DenyAllPossibleResourcesWithoutTag",
+			"Sid": "DenyCreateResourceWithNoOwnerTag",
 			"Effect": "Deny",
 			"Action": [
 				"ec2:RunInstances",
@@ -12,8 +12,6 @@
 				"autoscaling:CreateOrUpdateTags",
 				"autoscaling:AttachLoadBalancerTargetGroups",
 				"autoscaling:CreateAutoScalingGroup",
-				"iam:CreateUser",
-				"iam:CreateRole",
 				"iam:CreatePolicy",
 				"ecr:TagResource",
 				"s3:PutObjectTagging",
@@ -58,19 +56,11 @@
 				"logs:TagLogGroup",
 				"cloudfront:CreateDistribution",
 				"codepipeline:TagResource",
-				"ec2:CreateImage",
-				"organizations:CreateAccount",
-				"organizations:CreatePolicy",
-				"organizations:CreateOrganizationalUnit",
-				"organizations:TagResource",
-				"organizations:InviteAccountToOrganization",
 				"waf:CreateRule",
 				"waf:CreateWebACL",
 				"codedeploy:CreateApplication",
 				"codedeploy:CreateDeployment",
 				"codedeploy:CreateDeploymentGroup",
-				"cloudtrail:CreateTrail",
-				"cloudtrail:AddTags",
 				"ssm:CreateActivation",
 				"ssm:CreateAssociation",
 				"ssm:CreateDocument",
@@ -80,8 +70,7 @@
 				"ecs:TagResource",
 				"ecs:CreateTaskSet",
 				"elasticache:AddTagsToResource",
-				"elasticache:CreateCacheCluster",
-				"route53:CreateHostedZone"
+				"elasticache:CreateCacheCluster"
 			],
 			"Resource": [
 				"arn:aws:ec2:*:*:instance/*",
@@ -119,16 +108,12 @@
 				"arn:aws:logs:*:*:log-group:*",
 				"arn:aws:cloudfront::*:distribution/*",
 				"arn:aws:codepipeline:*:*:*",
-				"arn:aws:ec2:*::image/*",
-				"arn:aws:ec2:*::snapshot/*",
 				"arn:aws:organizations::*:account/o-*/*",
 				"arn:aws:organizations::*:policy/o-*/*/p-*",
 				"arn:aws:waf::*:webacl/*",
 				"arn:aws:waf::*:rule/*",
 				"arn:aws:codedeploy:*:*:application:*",
 				"arn:aws:codedeploy:*:*:deploymentgroup:*/*",
-				"arn:aws:cloudtrail:*:*:trail/*",
-				"arn:aws:ec2:*:*:instance/*",
 				"arn:aws:ssm:*:*:managed-instance/*",
 				"arn:aws:ssm:*:*:document/*",
 				"arn:aws:ecs:*:*:service/*",
@@ -136,8 +121,7 @@
 				"arn:aws:ecs:*:*:task/*",
 				"arn:aws:ecs:*:*:container-instance/*",
 				"arn:aws:ecs:*:*:task-definition/*:*",
-				"arn:aws:elasticache:*:*:cluster:*",
-				"arn:aws:route53:::hostedzone/*"
+				"arn:aws:elasticache:*:*:cluster:*"
 			],
 			"Condition": {
 				"Null": {
