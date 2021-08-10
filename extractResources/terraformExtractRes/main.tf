@@ -4,6 +4,7 @@ provider "aws" {
  
 resource "aws_iam_role" "lambda_get_resources_role" {
   name = var.lambdaRole
+  tags = var.tags
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -58,9 +59,9 @@ resource "aws_lambda_function" "lambdaFuncGetResources" {
   environment {
     variables = {
       REGION     = var.Region, 
-      FROM       = var.fromMail,
+      FROM       = var.sender,
       FILE       = var.file, 
-      RECIPIENTS = var.toMail
+      RECIPIENTS = var.recipients
     }
   }
   timeout = "300"
