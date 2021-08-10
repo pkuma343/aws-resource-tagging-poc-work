@@ -29,7 +29,7 @@ resource "aws_iam_role_policy" "lambda_get_resources_policy" {
             "Sid": "VisualEditor0",
             "Effect": "Allow",
             "Action": "ses:SendRawEmail",
-            "Resource": "arn:aws:ses:*:475600362560:identity/*"
+            "Resource": "arn:aws:ses:*:*:identity/*"
         },
         {
             "Sid": "VisualEditor1",
