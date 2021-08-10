@@ -1,14 +1,25 @@
 variable "Region" {
     default = "us-east-1"
 }
-variable "fromMail" {
-    default = "shraddha.jain@nagarro.com"
+variable "sender" {
+    type  = string
+}
+variable "cron"{
+    type  = string
+    default = "cron(44 11 * * ? *)"
+}
+variable "recipients" {
+    // default = "shraddha.jain@nagarro.com, sanchali.gupta@nagarro.com"
+    type        = string
+    default     = "31shraddhajain@gmail.com"   
+}
+variable "tags" {
+  description = "Tags"
+  type        = map(string)
+  default     = {}
 }
 variable "file" {
-    default = "resources.csv"
-}
-variable "toMail" {
-    default = "shraddha.jain@nagarro.com"
+    default = "resources"
 }
 variable "FUNCTION_NAME" {
     default = "lambdaFuncGetResources"
@@ -22,6 +33,5 @@ variable "lambdaPolicy" {
 variable "event_rule" {
     default = "get_resources_rule"
 }
-variable "cron"{
-    default = "cron(38 12 * * ? *)"
-}
+
+
