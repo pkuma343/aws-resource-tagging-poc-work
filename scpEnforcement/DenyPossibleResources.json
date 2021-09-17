@@ -1,0 +1,163 @@
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "DenyCreateResourceWithNoOwnerTag",
+			"Effect": "Deny",
+			"Action": [
+				"ec2:RunInstances",
+				"ec2:CreateTags",
+				"elasticfilesystem:CreateFileSystem",
+				"elasticloadbalancing:CreateLoadBalancer",
+				"autoscaling:CreateOrUpdateTags",
+				"autoscaling:AttachLoadBalancerTargetGroups",
+				"autoscaling:CreateAutoScalingGroup",
+				"iam:CreatePolicy",
+				"ecr:TagResource",
+				"s3:PutObjectTagging",
+				"cloudformation:CreateStackSet",
+				"cloudformation:TagResource",
+				"cloudformation:CreateStackInstances",
+				"cloudformation:CreateStack",
+				"cloudfront:CreateStreamingDistributionWithTags",
+				"cloudfront:CreateDistributionWithTags",
+				"cloudfront:TagResource",
+				"kms:CreateKey",
+				"kms:TagResource",
+				"sqs:TagQueue",
+				"secretsmanager:CreateSecret",
+				"secretsmanager:TagResource",
+				"elasticbeanstalk:CreateApplication",
+				"elasticbeanstalk:AddTags",
+				"codecommit:CreateRepository",
+				"codecommit:TagResource",
+				"codebuild:CreateProject",
+				"codebuild:CreateReportGroup",
+				"codedeploy:TagResource",
+				"dms:AddTagsToResource",
+				"dms:CreateEndpoint",
+				"dms:CreateReplicationInstance",
+				"dms:CreateEventSubscription",
+				"dms:CreateReplicationTask",
+				"resource-groups:CreateGroup",
+				"resource-groups:Tag",
+				"cognito-identity:TagResource",
+				"cognito-idp:CreateGroup",
+				"cognito-idp:CreateUserPool",
+				"cognito-idp:TagResource",
+				"rds:AddTagsToResource",
+				"rds:CreateDBInstance",
+				"ecr-public:CreateRepository",
+				"ecr-public:TagResource",
+				"ecr:CreateRepository",
+				"cloudwatch:PutMetricAlarm",
+				"cloudwatch:TagResource",
+				"logs:CreateLogGroup",
+				"logs:TagLogGroup",
+				"cloudfront:CreateDistribution",
+				"codepipeline:TagResource",
+				"waf:CreateRule",
+				"waf:CreateWebACL",
+				"codedeploy:CreateApplication",
+				"codedeploy:CreateDeployment",
+				"codedeploy:CreateDeploymentGroup",
+				"ssm:CreateActivation",
+				"ssm:CreateAssociation",
+				"ssm:CreateDocument",
+				"ssm:AddTagsToResource",
+				"ecs:CreateCluster",
+				"ecs:CreateService",
+				"ecs:TagResource",
+				"ecs:CreateTaskSet",
+				"elasticache:AddTagsToResource",
+				"elasticache:CreateCacheCluster"
+			],
+			"Resource": [
+				"arn:aws:ec2:*:*:instance/*",
+				"arn:aws:ec2:*:*:volume/*",
+				"arn:aws:elasticfilesystem:*:*:file-system/*",
+				"arn:aws:elasticloadbalancing:*:*:loadbalancer/*",
+				"arn:aws:autoscaling:*:*:autoScalingGroup:*:autoScalingGroupName/*",
+				"arn:aws:iam::*:user/*",
+				"arn:aws:iam::*:role/*",
+				"arn:aws:iam::*:policy/*",
+				"arn:aws:ecr:*:*:repository/*",
+				"arn:aws:s3:::*",
+				"arn:aws:cloudformation:*:*:stack/*/*",
+				"arn:aws:cloudfront::*:distribution/*",
+				"arn:aws:cloudfront::*:streaming-distribution/*",
+				"arn:aws:kms:*:*:key/*",
+				"arn:aws:sqs:*:*:*",
+				"arn:aws:secretsmanager:*:*:secret:*",
+				"arn:aws:elasticbeanstalk:*:*:application/*",
+				"arn:aws:codecommit:*:*:*",
+				"arn:aws:codebuild:*:*:project/*",
+				"arn:aws:codebuild:*:*:report-group/*",
+				"arn:aws:codedeploy:*:*:application:*",
+				"arn:aws:dms:*:*:rep:*",
+				"arn:aws:dms:*:*:endpoint:*",
+				"arn:aws:dms:*:*:es:*",
+				"arn:aws:dms:*:*:subgrp:*",
+				"arn:aws:resource-groups:*:*:group/*",
+				"arn:aws:cognito-identity:*:*:identitypool/*",
+				"arn:aws:cognito-idp:*:*:userpool/*",
+				"arn:aws:rds:*:*:db:*",
+				"arn:aws:ecr:*:*:repository/*",
+				"arn:aws:ecr-public::*:repository/*",
+				"arn:aws:cloudwatch:*:*:alarm:*",
+				"arn:aws:logs:*:*:log-group:*",
+				"arn:aws:cloudfront::*:distribution/*",
+				"arn:aws:codepipeline:*:*:*",
+				"arn:aws:organizations::*:account/o-*/*",
+				"arn:aws:organizations::*:policy/o-*/*/p-*",
+				"arn:aws:waf::*:webacl/*",
+				"arn:aws:waf::*:rule/*",
+				"arn:aws:codedeploy:*:*:application:*",
+				"arn:aws:codedeploy:*:*:deploymentgroup:*/*",
+				"arn:aws:ssm:*:*:managed-instance/*",
+				"arn:aws:ssm:*:*:document/*",
+				"arn:aws:ecs:*:*:service/*",
+				"arn:aws:ecs:*:*:cluster/*",
+				"arn:aws:ecs:*:*:task/*",
+				"arn:aws:ecs:*:*:container-instance/*",
+				"arn:aws:ecs:*:*:task-definition/*:*",
+				"arn:aws:elasticache:*:*:cluster:*"
+			],
+			"Condition": {
+				"Null": {
+					"aws:RequestTag/Owner": true
+				},
+				"ForAllValues:StringNotLike": {
+					"aws:RequestTag/Owner": [
+						"*"
+					]
+				}
+			}
+		},
+		{
+			"Sid": "DenyVPC",
+			"Effect": "Deny",
+			"Action": [
+				"ec2:CreateTags",
+				"ec2:CreateSubnet",
+				"ec2:CreateVpc",
+				"ec2:CreateVolume",
+				"ec2:CreateRouteTable"
+			],
+			"Resource": [
+				"*"
+			],
+			"Condition": {
+				"Null": {
+					"aws:ResourceTag/Owner": true
+				},
+				"ForAllValues:StringNotLike": {
+					"aws:RequestTag/Owner": [
+						"*",
+						"Name"
+					]
+				}
+			}
+		}
+	]
+}

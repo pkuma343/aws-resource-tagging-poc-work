@@ -1,0 +1,94 @@
+===========================================================================
+***************************  Covered and Success  *************************
+===========================================================================
+EC2
+SNS
+EFS
+ELB
+ASG
+VPC
+IAM	 
+SQS			
+KMS
+CloudFormation	
+Secret Manager
+Code Commit
+Code Build
+ResourceGroups 
+Cognito (User Pool)
+Elastic Cache				- (using Terraform as well as a console) Tagging on default resources(like parametergroup) is not supported. 
+DMS							- To perform this....we need to remove "IAM:CreateRole" (Error: User: arn:aws:iam::602989525015:user/enforce-tag-user is not authorized to perform: iam:CreateRole on resource: arn:aws:iam::602989525015:role/dms-vpc-role with an explicit deny)			
+ElasticBeanstalk			- Working....with some issues (Maybe "IAM: CreateRole" action is a problem)
+RDS 						- Tags not found on console...using Terraform
+ECR				    		- Tags not found on console...Using Terraform	
+CloudWatch					- Tags not found on console...Using Terraform   cloudwatch:PutMetricAlarm Working					
+AWS_Image					- Using Terraform
+CloudFront					- Tags not found on console...using Terraform
+WAF(Web ACL) 				- Tags not found on console...using Terraform
+Code Deploy					- Tags not found on console...using Terraform (Application,DeploymentGroup)
+SSM 						- Tags not found on console...using Terraform
+ECS	(Service)				- Tags Available on console...using Terraform (Cluster and Task Definition Not affected with tags or without tags)
+
+
+======================================================================
+*****************  Not feasible as per current observation  *******
+======================================================================
+
+Create SnapShot				- Tag Available	(Creating snapshotFailed........API error message....You are not authorized to perform this operation. Encoded authorization failure message:)
+								Using Terraform......Due SnapShot Failure....aws_ami also failed
+									When the Owner tag is given.... Error: error creating EC2 EBS Snapshot: UnauthorizedOperation: You are not authorized to perform this operation.
+
+S3 							- Tag Available (S3:CreateBucket........Access Denied)	
+								using Terraform: Error: error updating S3 Bucket (poctag) tags: error setting resource tags (poctag): AccessDenied: Access Denied 
+									status code: 403, request id: P6AHMSZ3TB4RQ38H, host id: kaCAfQNqtVARZFR94TtRhvogcGtrVRmjxUd0C5HEoUIXuNo41J+mC0JDN124bx1WgohYC6gGeJY=)
+
+DynamoDB 					- Tags Available (Error: "Not Authorized: User: arn:aws:iam::602989525015:user/enforce-tag-user is not authorized to perform: dynamodb:CreateTable on resource: arn:aws:dynamodb:us-east-1:602989525015:table/test with an explicit deny (Service: AmazonDynamoDBv2; Status Code: 400; Error Code: AccessDeniedException; Request ID: FSA3JEHT0N2CHV7OGH0BO65MNJVV4KQNSO5AEMVJF66Q9ASUAAJG; Proxy: null)
+								Using Terraform: Error: error creating DynamoDB Table: AccessDeniedException: User: arn:aws:iam::602989525015:user/enforce-tag-user is not authorized to perform: dynamodb:CreateTable on resource: arn:aws:dynamodb:us-east-1:602989525015:table/var.table_name with an explicit deny status code: 400, request id: J40NV6BUMJPT6FS27UKL4OTT5FVV4KQNSO5AEMVJF66Q9ASUAAJG")					
+
+CloudWatch-log				- Tags Available
+								Using Terraform (CreateLogGroup......Error: Creating CloudWatch Log Group failed: AccessDeniedException: User: arn:aws:iam::602989525015:user/enforce-tag-user is not authorized to perform: logs:CreateLogGroup on resource: arn:aws:logs:us-east-1:602989525015:log-group:poc-logGroup:log-stream: with an explicit deny)
+====
+Lambda 						- Tags not found on console...using Terraform
+								without tags.......Error: Error creating IAM Role lambda_poc_role: AccessDenied: User: arn:aws:iam::602989525015:user/enforce-tag-user is not authorized to perform: iam:CreateRole on resource: arn:aws:iam::602989525015:role/lambda_poc_role with an explicit deny
+												status code: 403, request id: c7c5887d-77f6-4c6e-9aae-4721678eab0e
+								with tags..........Error: error creating Lambda Function (1): AccessDeniedException: 
+       						 				status code: 403, request id: b6bf98e7-908c-40a0-bca0-a0e081212f19
+LaunchConfig				- Tags not found on console...Using Terraform 	Error: Unsupported argument.....An argument named "tags" is not expected here.
+
+CodePipeline				- Tags not found on console....using Terraform
+								Error: Error creating CodePipeline: AccessDeniedException: User: arn:aws:iam::602989525015:user/enforce-tag-user is not authorized to perform: codepipeline:CreatePipeline on resource: arn:aws:codepipeline:us-east-1:602989525015:poc with an explicit deny
+								status code: 400, request id: 6802795c-6025-4c9c-90d8-39555c494982
+
+CodeDeploy(deployment_config)- Tags not found on console....using Terraform....aws_codedeploy_deployment_config...Error: Unsupported argument....(An argument named "tags" is not expected here.)
+
+SQS							- Tags Available ("CreateQueue = AccessDenied: Access to the resource https://sqs.us-west-1.amazonaws.com/ is denied.")
+								Using Terraform....Error: error creating SQS Queue (terraform-poc-queue): AccessDenied: Access to the resource https://sqs.us-east-1.amazonaws.com/ is denied.
+
+Route53						- Tags available... tested on Console as well as Terraform(Condition is not affected on Create Hosted Zone...tagged or untagged both are working)
+								on console..due to Action:ChangeTagsForResource..Error: test.test failed to add the tags.You can add the tags later when editing the hosted zone.
+
+CloudTrail 					- Tags Available 
+								Using Terraform (Error: Error creating CloudTrail: AccessDeniedException: User: arn:aws:iam::602989525015:user/enforce-tag-user is not authorized to perform: cloudtrail:CreateTrail on resource: arn:aws:cloudtrail:us-east-1:602989525015:trail/mytagpoc with an explicit deny)
+								
+Licence Manager				- Tags avialable (SCP Not affected)  
+
+API Gateway					- Tags not found on console....using Terraform
+								Error: error creating API Gateway specification: AccessDeniedException: status code: 403, request id: 06ee6500-f18c-424b-be30-fe0199131d45
+
+========================================
+				WIP
+========================================
+AWS SSO			- Tags not found
+AWS ORG			-
+
+
+
+================================================
+****************PAID Services*******************
+================================================
+EKS					- paid		
+Kinesis			 	- Paid.......Please note that Amazon Kinesis Data Streams is NOT currently available in AWS Free Tier.	
+Athena	 			- paid
+EMR 				- Paid 
+XRay 				- paid
+Redshift			- you’re eligible for a free limited time trial of our dc2.Large node
